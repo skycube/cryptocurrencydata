@@ -7,7 +7,7 @@ Provides a golang library to receive current and historic data
 from coinmarketcap's API.
 
 Please note that there limitations in how many request you can do
-to their API. Please find details here https://coinmarketcap.com/api/
+to their API. Please find details here: https://coinmarketcap.com/api/
 
 **THIS IS A LIBRARY, NOT YOUR WISHING SOLUTION TO MAKE YOU RICH ALTHROUGHT IT MAY HELPS YOU TO GET THERE!**
 _if you do become rich, please send me all your wins ;)_
@@ -26,7 +26,13 @@ go get -u github.com/skycube/cryptocurrencydata
 
 ### Basic Usage
 
-Get Value in USD for "bitcoin,ethereum,skycoin" currencies
+The below will show a basic usage of some of the available methods.
+All examples can be found in:
+Basic examples can be found here:
+ 
+```examples/examples.go```
+
+#### Get Value in USD for "bitcoin,ethereum,skycoin" currencies
 ```go
 // Multiple currencies price in USD
 d, err := ccd.PriceUSDByIDs([]string{"bitcoin", "ethereum", "skycoin"})
@@ -38,8 +44,34 @@ for _, v := range d {
     fmt.Printf("%-10s \t $%.2f\n", v.ID, v.Value)
 }
 ```
+Output:
+```bash
+# GetPriceUSDByCurrencyIDs
+bitcoin    	 $10638.00
+ethereum   	 $787.79
+skycoin    	 $14.02
+```
 
-Get full currencies data details by currency ids
+#### Multiple currencies values change last 1 hour
+```go
+d, err := ccdata.GetPercentChange1HByCurrencyIDs([]string{"bitcoin", "ethereum", "skycoin"})
+if err != nil {
+    fmt.Printf("%v", err)
+}
+fmt.Println("# GetPercentChange1HByCurrencyIDs")
+for _, v := range d {
+    fmt.Printf("%-10s \t %.2f\n", v.ID, v.Value)
+}
+```
+Output:
+```bash
+# GetPercentChange1HByCurrencyIDs
+bitcoin    	 0.55
+ethereum   	 0.31
+skycoin    	 2.50
+```
+
+#### Get full currencies data details by currency ids
 ```go
 // Multiple currencies full data
 d, err := ccd.GetCurrencyDataByIDs([]string{"bitcoin", "ethereum", "skycoin"})
@@ -51,19 +83,43 @@ for _, v := range d {
     fmt.Printf("%v\n", v)
 }
 ```
+Output:
+```bash
+# GetCurrencyDataByCurrencyIDs
+&{bitcoin Bitcoin BTC 1 10638 1 6.91178e+09 1.79837645256e+11 1.6905212e+07 1.6905212e+07 2.1e+07 0.55 -3.61 -0.32 2018-03-07 11:39:26 +0000 UTC}
+&{ethereum Ethereum ETH 2 787.794 0.074382 1.86455e+09 7.7233590834e+10 9.80378e+07 9.80378e+07 0 0.31 -5.76 -9.69 2018-03-07 11:39:12 +0000 UTC}
+&{skycoin Skycoin SKY 120 14.0169 0.00132345 552055 1.07331524e+08 7.657294e+06 2.5e+07 1e+08 2.5 -5.5 -16.3 2018-03-07 11:39:10 +0000 UTC}
+```
 
-### Examples
-
-Can be found here:
- 
-```examples/*```
+#### Get single currency history
+```go
+d, err := ccdata.GetCurrencyHistoryByCurrencyID("skycoin")
+if err != nil {
+    fmt.Printf("%v", err)
+}
+fmt.Println("# GetCurrencyHistoryByCurrencyID")
+for _, v := range d {
+    fmt.Printf("timestamp %v timeUTC: %v MarketSupply: %d PriceUSD: $%.2f PriceBTC: $%.2f VolUSD: $%d\n", v.Timestamp, v.TimeUTC, v.MarketSupply, v.PriceUSD, v.PriceBTC, v.VolUSD)
+}
+```
+Output:
+```bash
+# GetCurrencyHistoryByCurrencyID
+timestamp 1519029250000 timeUTC: 2018-02-19 08:34:10 +0000 UTC MarketSupply: 147280561 PriceUSD: $19.76 PriceBTC: $0.00 VolUSD: $670990
+timestamp 1496298589000 timeUTC: 2017-06-01 06:29:49 +0000 UTC MarketSupply: 8866853 PriceUSD: $1.63 PriceBTC: $0.00 VolUSD: $73770
+timestamp 1507642758000 timeUTC: 2017-10-10 13:39:18 +0000 UTC MarketSupply: 17325056 PriceUSD: $2.92 PriceBTC: $0.00 VolUSD: $9757
+timestamp 1509521956000 timeUTC: 2017-11-01 07:39:16 +0000 UTC MarketSupply: 24330265 PriceUSD: $4.10 PriceBTC: $0.00 VolUSD: $33590
+timestamp 1509845958000 timeUTC: 2017-11-05 01:39:18 +0000 UTC MarketSupply: 24284342 PriceUSD: $4.09 PriceBTC: $0.00 VolUSD: $13874
+timestamp 1513735163000 timeUTC: 2017-12-20 01:59:23 +0000 UTC MarketSupply: 107126489 PriceUSD: $16.92 PriceBTC: $0.00 VolUSD: $320845
+...
+```
 
 ## Todo
 * Optional parameters
 * Code documentation (yes I know...)
 * SpelLChaeck
 * Write tests one close to publish (just hate them atm)
-* ...something else?...
+* Suggestions?
 
 ### Things may going to happen
 * Do things better, prettier, writing GO is always learning and improving
