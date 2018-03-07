@@ -1,28 +1,18 @@
 language: go
 
 go:
-  - 1.9.x
+  - 1.9
+  - master
 
-# skip the install step. don't `go get` deps. only build with code in vendor/
-install: true
-
+# Yes email me the results of the test runs.
 notifications:
   email: true
 
-# install code checkers
 before_script:
-  - cd vendor/github.com/golang/lint/golint
-  - go install
-  - cd -
-  - cd vendor/honnef.co/go/tools/cmd/megacheck
-  - go install
-  - cd -
+  - GO_FILES=$(find . -iname '*.go' -type f | grep -v /examples/) # All the .go files, excluding examples
+  - go get github.com/golang/lint/golint       # Linter
 
 script:
-  - GO_FILES=$(find . -iname '*.go' -type f | grep -v /vendor/)
-  - test -z $(gofmt -s -l $GO_FILES)
-  - go test -v -race ./...
-  - go vet ./...
-  - megacheck ./...
-  # golint ./... doesn't ignore vendor/ for some dumb reason
-  - golint -set_exit_status $(go list ./... | grep -v /vendor/)
+  - go test -v ./...                   # Run all the tests with the race detector enabled
+  - go vet ./...                               # go vet is the official Go static analyzer
+  - golint -set_exit_status $(go list ./...) # one last linter
