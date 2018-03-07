@@ -3,13 +3,13 @@ package main
 import (
 	"fmt"
 
-	ccdata "github.com/skycube/cryptocurrencydata"
+	"github.com/skycube/cryptocurrencydata"
 )
 
 func main() {
 
 	// Multiple currencies price in USD
-	cValuesUSD, err := ccdata.GetPriceUSDByCurrencyIDs([]string{"bitcoin", "ethereum", "skycoin"})
+	cValuesUSD, err := cryptocurrencydata.GetPriceUSDByCurrencyIDs([]string{"bitcoin", "ethereum", "skycoin"})
 	if err != nil {
 		fmt.Printf("%v", err)
 	}
@@ -19,7 +19,7 @@ func main() {
 	}
 
 	// Multiple currencies values change last 1 hour
-	cValuesChange1h, err := ccdata.GetPercentChange1HByCurrencyIDs([]string{"bitcoin", "ethereum", "skycoin"})
+	cValuesChange1h, err := cryptocurrencydata.GetPercentChange1HByCurrencyIDs([]string{"bitcoin", "ethereum", "skycoin"})
 	if err != nil {
 		fmt.Printf("%v", err)
 	}
@@ -29,7 +29,7 @@ func main() {
 	}
 
 	// Multiple currencies full data
-	cMCData, err := ccdata.GetCurrencyDataByCurrencyIDs([]string{"bitcoin", "ethereum", "skycoin"})
+	cMCData, err := cryptocurrencydata.GetCurrencyDataByCurrencyIDs([]string{"bitcoin", "ethereum", "skycoin"})
 	if err != nil {
 		fmt.Printf("%v", err)
 	}
@@ -39,7 +39,7 @@ func main() {
 	}
 
 	// Get single currency history
-	currencyHistory, err := ccdata.GetCurrencyHistoryByCurrencyID("skycoin")
+	currencyHistory, err := cryptocurrencydata.GetCurrencyHistoryByCurrencyID("skycoin")
 	if err != nil {
 		fmt.Printf("%v", err)
 	}

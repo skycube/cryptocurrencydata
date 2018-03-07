@@ -34,8 +34,7 @@ Basic examples can be found here:
 
 #### Get Value in USD for "bitcoin,ethereum,skycoin" currencies
 ```go
-// Multiple currencies price in USD
-d, err := ccd.PriceUSDByIDs([]string{"bitcoin", "ethereum", "skycoin"})
+d, err := cryptocurrencydata.PriceUSDByIDs([]string{"bitcoin", "ethereum", "skycoin"})
 if err != nil {
     fmt.Printf("%v", err)
 }
@@ -54,7 +53,7 @@ skycoin    	 $14.02
 
 #### Multiple currencies values change last 1 hour
 ```go
-d, err := ccdata.GetPercentChange1HByCurrencyIDs([]string{"bitcoin", "ethereum", "skycoin"})
+d, err := cryptocurrencydata.GetPercentChange1HByCurrencyIDs([]string{"bitcoin", "ethereum", "skycoin"})
 if err != nil {
     fmt.Printf("%v", err)
 }
@@ -73,8 +72,7 @@ skycoin    	 2.50
 
 #### Get full currencies data details by currency ids
 ```go
-// Multiple currencies full data
-d, err := ccd.GetCurrencyDataByIDs([]string{"bitcoin", "ethereum", "skycoin"})
+d, err := cryptocurrencydata.GetCurrencyDataByIDs([]string{"bitcoin", "ethereum", "skycoin"})
 if err != nil {
     fmt.Printf("%v", err)
 }
@@ -93,7 +91,7 @@ Output:
 
 #### Get single currency history
 ```go
-d, err := ccdata.GetCurrencyHistoryByCurrencyID("skycoin")
+d, err := cryptocurrencydata.GetCurrencyHistoryByCurrencyID("skycoin")
 if err != nil {
     fmt.Printf("%v", err)
 }
