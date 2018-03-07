@@ -1,5 +1,5 @@
 # Cryptocurrencydata
-[![Build Status](https://travis-ci.org/skycube/cryptocurrencydata.svg?branch=develop)](https://travis-ci.org/skycube/cryptocurrencydata)
+[![Build Status](https://travis-ci.org/skycube/cryptocurrencydata.svg?branch=master)](https://travis-ci.org/skycube/cryptocurrencydata)
 [![GoDoc](https://godoc.org/github.com/skycube/cryptocurrencydata?status.svg)](https://godoc.org/github.com/skycube/cryptocurrencydata)
 [![Go Report Card](https://goreportcard.com/badge/github.com/skycube/cryptocurrencydata)](https://goreportcard.com/report/github.com/skycube/cryptocurrencydata)
 
