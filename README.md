@@ -116,8 +116,7 @@ timestamp 1513735163000 timeUTC: 2017-12-20 01:59:23 +0000 UTC MarketSupply: 107
 * Optional parameters
 * Code documentation (yes I know...)
 * SpelLChaeck
-* Write tests one close to publish (just hate them atm)
-* Suggestions?
+* tests
 
 ### Things may going to happen
 * Do things better, prettier, writing GO is always learning and improving
@@ -126,36 +125,17 @@ timestamp 1513735163000 timeUTC: 2017-12-20 01:59:23 +0000 UTC MarketSupply: 107
 
 ### Things not going to happen
 * Trotteling number of requests
-(as remote API limits the number of request;  10 per minute)
-* Single Currency lookups, can't find a use case for this
+(as remote API limits the number of request; 10 per minute)
+* Single currency lookups, can't find a use case for this
 * Store (local) to prevent duplicate lookups
-* Support more than one thread ad a time
-* Proxy responses internaly
+* Support more than one thread at a time
+* Proxy responses internaly (~maybe)
 * Logging
 * Abstractions (this is not chinese JAVA University project)
 
 ### Contribute
-* Please open an issue first
-* Create a pull request
-* Document your change
-* go vet, go imports, go fmt and all other usual suspects first
-* Don't miss changing existing tests
-* Be patient, it will maybe take 1h until I have time to check your change
-
-#### Create an Issue First
-
-Your PR is more likely to be accepted if you open an issue first.
-
-#### Submission Checklist
-
-- [ ] `gofmt -s -l .` produces no output
-- [ ] `go vet .` produces no output
-- [ ] `golint ./...` produces no output
-- [ ] `misspell .` produces no output
-- [ ] `ineffassign .` produces no output
-- [ ] `go test -race` passes
+Please see CONTRIBUTE.md
 
 ## Thanks
-Thanks to everyone reading this, using this and spcialy to those who are 
-not just negative.
-Be kind, do kind, help, not be a doushbag!
+Thanks to everyone reading this, using this and specialy to those who helped me along :)
+Be kind, do kind, and contribute your thoughts :)

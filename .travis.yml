@@ -15,7 +15,3 @@ script:
   - go test -v ./...                   # Run all the tests with the race detector enabled
   - go vet ./...                               # go vet is the official Go static analyzer
   - golint -set_exit_status $(go list ./...) # one last linter
-  - go test -race -coverprofile=coverage.txt -covermode=atomic
-
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
